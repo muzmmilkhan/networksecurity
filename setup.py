@@ -1,13 +1,17 @@
 from setuptools import setup, find_packages
 
-def read_requirements():
+HYPHEN_DOT_E = "-e ."
+def get_requirements():
     with open('requirements.txt', 'r') as f:
-        return f.read().splitlines()
-    
+        lines = f.read().splitlines()
+        if HYPHEN_DOT_E in lines:
+            lines.remove(HYPHEN_DOT_E)
+        return lines
+
 setup(
     name='networksecurity',
     version='0.1',
     author='muzmmil pathan',
     packages=find_packages(),
-    install_requires=read_requirements(),
+    install_requires=get_requirements(),
 )
